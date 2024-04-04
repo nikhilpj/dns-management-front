@@ -28,7 +28,7 @@ const EditRecord = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:5000/user/edit",
+        url: "https://dns-management-back.onrender.com/user/edit",
         data: {
           name:'nikhilpj.tech',
           recordType:recordType,

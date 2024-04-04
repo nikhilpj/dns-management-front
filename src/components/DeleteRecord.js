@@ -16,7 +16,7 @@ const DeleteRecord=()=>{
         try {
           const response = await axios({
             method: "post",
-            url: "http://localhost:5000/user/delete",
+            url: "https://dns-management-back.onrender.com/user/delete",
             data: {
               name:'nikhilpj.tech',
               recordType:record.Type,

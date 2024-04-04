@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:5000/user/login",
+        url: "https://dns-management-back.onrender.com/user/login",
         data: {
           email: email,
           password: password,

@@ -15,7 +15,7 @@ const Register = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:5000/user/register",
+        url: "https://dns-management-back.onrender.com/user/register",
         data: {
             name:name,
           email: email,

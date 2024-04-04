@@ -13,7 +13,7 @@ const Dashboard = () => {
     try {
         const response = await axios({
             method: "get",
-            url: "http://localhost:5000/user/records",
+            url: "https://dns-management-back.onrender.com/user/records",
             headers: {
               Authorization: `Bearer ${token}`,
             },

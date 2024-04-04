@@ -18,7 +18,7 @@ const AddRecord = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:5000/user/add",
+        url: "https://dns-management-back.onrender.com/user/add",
         data: {
           name:'nikhilpj.tech',
           recordType:recordType,
