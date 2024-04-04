@@ -31,7 +31,7 @@ const Register = () => {
         navigate('/dashboard')
       }
     } catch (error) {
-      console.log("error is ", e);
+      console.log("error is ", error);
     }
   }
   return (
