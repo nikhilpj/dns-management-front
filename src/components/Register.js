@@ -2,6 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Register = () => {
     const [name,setName] = useState('')
@@ -32,6 +36,7 @@ const Register = () => {
       }
     } catch (error) {
       console.log("error is ", error.message);
+      toast('registration unsuccessful')
     }
   }
   return (
@@ -74,6 +79,7 @@ const Register = () => {
           </button>
           <p className="cursor-pointer"><Link to='/'>Already have an account? Login</Link></p>
         </form>
+        <ToastContainer/>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useParams ,useNavigate} from "react-router-dom";
 import axios from "axios";
-
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const DeleteRecord=()=>{
     const navigate = useNavigate('')
@@ -40,6 +41,10 @@ const DeleteRecord=()=>{
           {
             navigate('/')
           }
+          else if(error?.response?.status===500)
+          {
+            toast('internal server error')
+          }
         }
     }
   
@@ -74,6 +79,7 @@ const DeleteRecord=()=>{
             </button>
            
           </form>
+          <ToastContainer/>
         </div>
       </div>
     );

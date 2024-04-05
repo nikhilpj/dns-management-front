@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import {Link,useNavigate} from 'react-router-dom'
 import { RECORDTYPES } from "../utils/constants";
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -42,6 +44,10 @@ const AddRecord = () => {
       {
         navigate('/')
       }
+      else if(error?.response?.status===500)
+      {
+        toast('internal server error')
+      }
     }
   }
   return (
@@ -73,6 +79,7 @@ const AddRecord = () => {
           </button>
          
         </form>
+        <ToastContainer/>
       </div>
     </div>
   );

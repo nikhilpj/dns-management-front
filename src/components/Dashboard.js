@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { RECORDTYPES } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const [records, setRecords] = useState([]);
@@ -28,6 +30,10 @@ const Dashboard = () => {
         if(error?.response?.status===401)
         {
             navigate('/')
+        }
+        else if(error?.response?.status===500)
+        {
+          toast('internal server error')
         }
         
     }
@@ -123,6 +129,7 @@ const Dashboard = () => {
             ))}
           </tbody>
         </table>
+        <ToastContainer/>
       </div>
     </>
   );

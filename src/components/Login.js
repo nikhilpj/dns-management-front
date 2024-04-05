@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import {Link,useNavigate} from 'react-router-dom'
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -33,6 +35,11 @@ const Login = () => {
       }
     } catch (error) {
       console.log("error is ", e);
+      if(error?.response?.status===500)
+      {
+        toast('login ussuccessfull')
+      }
+      
     }
   }
   return (
@@ -61,6 +68,7 @@ const Login = () => {
           </button>
          <p className="cursor-pointer" ><Link to='/register'>Do not have an account? Sign up here</Link></p>
         </form>
+        <ToastContainer/>
       </div>
     </div>
   );
