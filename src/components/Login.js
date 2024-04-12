@@ -31,7 +31,7 @@ const Login = () => {
       if(response.status==200)
       {
         
-        navigate('/dashboard')
+        navigate('/main')
       }
     } catch (error) {
       console.log("error is ", e);
@@ -47,7 +47,7 @@ const Login = () => {
       <div className="form">
         <form
           onSubmit={login}
-          className="w-4/12  mx-auto left-0 right-0  rounded-lg p-12 my-32 border-black border-2"
+          className="w-64 md:w-80 lg:w-96 mx-auto left-0 right-0  rounded-lg p-12 my-32 border-black border-2 "
         >
           <h1 className="font-bold text-3xl py-2">Login</h1>
           <input

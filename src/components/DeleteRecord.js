@@ -2,10 +2,11 @@ import { useParams ,useNavigate} from "react-router-dom";
 import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "./Header";
 
 const DeleteRecord=()=>{
     const navigate = useNavigate('')
-    const { encodedRecord } = useParams();
+    const { encodedRecord,name } = useParams();
     const record = JSON.parse(decodeURIComponent(encodedRecord));
     const token = localStorage.getItem('token');
   
@@ -19,7 +20,7 @@ const DeleteRecord=()=>{
             method: "post",
             url: "https://dns-management-back.onrender.com/user/delete",
             data: {
-              name:'nikhilpj.tech',
+              name:name,
               recordType:record.Type,
               value:record.ResourceRecords,
               ttl:record.TTL
@@ -32,7 +33,7 @@ const DeleteRecord=()=>{
           console.log(response)
           if(response.status==200)
           {
-            navigate('/dashboard')
+            toast('record deleted successfully')
           }
           
         } catch (error) {
@@ -50,17 +51,18 @@ const DeleteRecord=()=>{
   
     return (
         <div>
+          <Header/>
         <div className="form">
           <form
             onSubmit={deletion}
-            className="w-4/12  mx-auto left-0 right-0  rounded-lg p-12 my-24 border-2 border-black"
+            className="w-72 md:w-80 lg:w-96 mx-auto left-0 right-0  rounded-lg p-12 my-24 border-2 border-black"
           >
             <h1 className="font-bold text-3xl py-2">Delete Record</h1>
             <input
               type="text"
               
               className="p-2 my-2 w-full border-2 border-gray-400"
-              value='nikhilpj.tech'
+              value={name}
             ></input>
             <br></br>
             <input

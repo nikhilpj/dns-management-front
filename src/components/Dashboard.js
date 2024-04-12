@@ -1,25 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RECORDTYPES } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "./Header";
 
 const Dashboard = () => {
   const [records, setRecords] = useState([]);
   const [selectedRecord, setselectedRecord] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { encodedRecord } = useParams();
+    const {id,name} = JSON.parse(decodeURIComponent(encodedRecord));
+    console.log('id',id,'name',name)
 
   const getRecords = async () => {
     try {
         const response = await axios({
             method: "get",
             url: "https://dns-management-back.onrender.com/user/records",
+            params:{
+              id:id,
+              name:name
+              
+            },
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
+          
           console.log(response, "response for getting records");
       
           setRecords(response.data.data.ResourceRecordSets);
@@ -51,12 +61,12 @@ const Dashboard = () => {
 
   const handleDeleteRecord = (record) => {
     const encodedRecord = encodeURIComponent(JSON.stringify(record));
-    navigate(`/delete/${encodedRecord}`);
+    navigate(`/delete/${encodedRecord}/${name}`);
   };
 
   const handleEditRecord = (record) => {
     const encodedRecord = encodeURIComponent(JSON.stringify(record));
-    navigate(`/edit/${encodedRecord}`);
+    navigate(`/edit/${encodedRecord}/${name}`);
   };
 
   const filteredRecords = selectedRecord
@@ -64,9 +74,10 @@ const Dashboard = () => {
     : records;
   return (
     <>
-      <div className="flex flex-col  justify-center h-full">
+    <Header/>
+      <div className="flex flex-col  justify-center h-full ">
         <div>
-          <div className="mb-4 flex  justify-between py-2 px-4">
+          <div className="mb-4 flex  justify-between py-2 px-4 ">
             <select
               className="border-2  border-gray-800 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 block  bg-white"
               onChange={handleRecordType}
@@ -85,13 +96,13 @@ const Dashboard = () => {
 
             <button
               className="  border-2 bg-gray-100 border-gray-800 rounded-md py-2 px-3   "
-              onClick={() => navigate("/add")}
+              onClick={() => navigate(`/add/${name}`)}
             >
               Add Record
             </button>
           </div>
         </div>
-        <table className="min-w-full border-4 border-collapse">
+        <table className=" border-4 border-collapse ">
           <thead>
             <tr>
               <th className="border-4 py-3 px-6">S.NO</th>

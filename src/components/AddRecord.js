@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import {Link,useNavigate} from 'react-router-dom'
+import {Link,useNavigate,useParams} from 'react-router-dom'
 import { RECORDTYPES } from "../utils/constants";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "./Header";
 
 
 
 const AddRecord = () => {
+  const {name} = useParams()
   const [value,setValue] = useState('')
   const [ttl,setTtl] = useState('')
   const [recordType,setRecordType] =useState('')
@@ -22,7 +24,7 @@ const AddRecord = () => {
         method: "post",
         url: "https://dns-management-back.onrender.com/user/add",
         data: {
-          name:'nikhilpj.tech',
+          name:name,
           recordType:recordType,
           value:value,
           ttl:ttl
@@ -35,7 +37,7 @@ const AddRecord = () => {
       console.log(response)
       if(response.status==200)
       {
-        navigate('/dashboard')
+        toast('record created successfully')
       }
      
     } catch (error) {
@@ -52,6 +54,7 @@ const AddRecord = () => {
   }
   return (
     <div>
+      <Header/>
       <div className="form">
         <form
           onSubmit={add}
@@ -62,7 +65,7 @@ const AddRecord = () => {
             type="text"
             placeholder="Record Name"
             className="p-2 my-2 w-full border-2 border-gray-400"
-            value='nikhilpj.tech'
+            value={name}
           ></input>
           <br></br>
           <select onChange={(e)=>setRecordType(e.target.value)} className="w-full p-2 my-2 border-gray-400 border-2" >

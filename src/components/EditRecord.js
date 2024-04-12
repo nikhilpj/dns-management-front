@@ -4,10 +4,11 @@ import {Link,useNavigate,useParams} from 'react-router-dom'
 import { RECORDTYPES } from "../utils/constants";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "./Header";
 
 
 const EditRecord = () => {
-    const { encodedRecord } = useParams();
+    const { encodedRecord ,name} = useParams();
     const record = JSON.parse(decodeURIComponent(encodedRecord));
   const [value,setValue] = useState(record.ResourceRecords)
   const [ttl,setTtl] = useState(record.TTL)
@@ -31,7 +32,7 @@ const EditRecord = () => {
         method: "post",
         url: "https://dns-management-back.onrender.com/user/edit",
         data: {
-          name:'nikhilpj.tech',
+          name:name,
           recordType:recordType,
           value:value,
           ttl:ttl
@@ -44,7 +45,7 @@ const EditRecord = () => {
       console.log(response)
       if(response.status==200)
       {
-        navigate('/dashboard')
+        toast('record edited successfully')
       }
       
     } catch (error) {
@@ -61,17 +62,18 @@ const EditRecord = () => {
   }
   return (
     <div>
+      <Header/>
       <div className="form">
         <form
           onSubmit={edit}
-          className="w-4/12  mx-auto left-0 right-0  rounded-lg p-12 my-24 border-2 border-black"
+          className="w-72 md:w-80 lg:w-96  mx-auto left-0 right-0  rounded-lg p-12 my-24 border-2 border-black"
         >
           <h1 className="font-bold text-3xl py-2">Edit Record</h1>
           <input
             type="text"
             placeholder="Record Name"
             className="p-2 my-2 w-full border-2 border-gray-400"
-            value='nikhilpj.tech'
+            value={name}
           ></input>
           <br></br>
           <select onChange={(e)=>setRecordType(e.target.value)} className="w-full p-2 my-2 border-gray-400 border-2" >

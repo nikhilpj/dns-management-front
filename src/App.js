@@ -6,6 +6,9 @@ import Dashboard from './components/Dashboard';
 import AddRecord from './components/AddRecord';
 import DeleteRecord from './components/DeleteRecord';
 import EditRecord from './components/EditRecord';
+import AddHostingZone from './components/AddHostingZone';
+import ViewHostingZone from './components/ViewHostedZone';
+import Main from './components/Main';
 
 
 
@@ -20,20 +23,32 @@ function App() {
       element:<Register/>
     },
     {
-      path:'/dashboard',
+      path:'/dashboard/:encodedRecord',
       element:<Dashboard/>
     },
     {
-      path:'/add',
+      path:'/add/:name',
       element:<AddRecord/>
     },
     {
-      path:'/delete/:encodedRecord',
+      path:'/delete/:encodedRecord/:name',
       element:<DeleteRecord/>
     },
     {
-      path:'/edit/:encodedRecord',
+      path:'/edit/:encodedRecord/:name',
       element:<EditRecord/>
+    },
+    {
+      path:'/addhostingZone',
+      element:<AddHostingZone/>
+    },
+    {
+      path:'/view',
+      element:<ViewHostingZone/>
+    },
+    {
+      path:'/main',
+      element:<Main/>
     }
 
   ])
