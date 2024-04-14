@@ -27,15 +27,15 @@ function App() {
       element:<Dashboard/>
     },
     {
-      path:'/add/:name',
+      path:'/add/:name/:id',
       element:<AddRecord/>
     },
     {
-      path:'/delete/:encodedRecord/:name',
+      path:'/delete/:encodedRecord/:name/:id',
       element:<DeleteRecord/>
     },
     {
-      path:'/edit/:encodedRecord/:name',
+      path:'/edit/:encodedRecord/:name/:id',
       element:<EditRecord/>
     },
     {

@@ -8,7 +8,7 @@ import Header from "./Header";
 
 
 const EditRecord = () => {
-    const { encodedRecord ,name} = useParams();
+    const { encodedRecord ,name,id} = useParams();
     const record = JSON.parse(decodeURIComponent(encodedRecord));
   const [value,setValue] = useState(record.ResourceRecords)
   const [ttl,setTtl] = useState(record.TTL)
@@ -32,6 +32,7 @@ const EditRecord = () => {
         method: "post",
         url: "https://dns-management-back.onrender.com/user/edit",
         data: {
+          id:id,
           name:name,
           recordType:recordType,
           value:value,

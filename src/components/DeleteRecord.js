@@ -6,7 +6,7 @@ import Header from "./Header";
 
 const DeleteRecord=()=>{
     const navigate = useNavigate('')
-    const { encodedRecord,name } = useParams();
+    const { encodedRecord,name,id } = useParams();
     const record = JSON.parse(decodeURIComponent(encodedRecord));
     const token = localStorage.getItem('token');
   
@@ -20,6 +20,7 @@ const DeleteRecord=()=>{
             method: "post",
             url: "https://dns-management-back.onrender.com/user/delete",
             data: {
+              id:id,
               name:name,
               recordType:record.Type,
               value:record.ResourceRecords,

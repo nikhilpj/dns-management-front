@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header";
 
 const ViewHostingZone = () => {
-  
+  const [hostedZoneName,setHostedZoneName] = useState('')
   const [zoneDetails, setZoneDetails] = useState("");
  
   const navigate = useNavigate();

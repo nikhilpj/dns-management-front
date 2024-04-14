@@ -9,7 +9,7 @@ import Header from "./Header";
 
 
 const AddRecord = () => {
-  const {name} = useParams()
+  const {name,id} = useParams()
   const [value,setValue] = useState('')
   const [ttl,setTtl] = useState('')
   const [recordType,setRecordType] =useState('')
@@ -24,6 +24,7 @@ const AddRecord = () => {
         method: "post",
         url: "https://dns-management-back.onrender.com/user/add",
         data: {
+          id:id,
           name:name,
           recordType:recordType,
           value:value,

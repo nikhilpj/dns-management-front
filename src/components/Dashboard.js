@@ -61,12 +61,12 @@ const Dashboard = () => {
 
   const handleDeleteRecord = (record) => {
     const encodedRecord = encodeURIComponent(JSON.stringify(record));
-    navigate(`/delete/${encodedRecord}/${name}`);
+    navigate(`/delete/${encodedRecord}/${name}/${id}`);
   };
 
   const handleEditRecord = (record) => {
     const encodedRecord = encodeURIComponent(JSON.stringify(record));
-    navigate(`/edit/${encodedRecord}/${name}`);
+    navigate(`/edit/${encodedRecord}/${name}/${id}`);
   };
 
   const filteredRecords = selectedRecord
@@ -96,7 +96,7 @@ const Dashboard = () => {
 
             <button
               className="  border-2 bg-gray-100 border-gray-800 rounded-md py-2 px-3   "
-              onClick={() => navigate(`/add/${name}`)}
+              onClick={() => navigate(`/add/${name}/${id}`)}
             >
               Add Record
             </button>
